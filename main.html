@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum Vitae</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f5f1e8 0%, #e8c0e2 100%);
+            color: #2c2c2c;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 40px 20px;
+            background: #faf8f3;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #ac6aa2;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #2c2c2c;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .header h2 {
+            font-size: 2.2rem;
+            font-weight: normal;
+            color: #8b557e;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .left-column {
+            background: rgba(194, 95, 212, 0.6);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .right-column {
+            display: grid;
+            gap: 30px;
+        }
+
+        .photo-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .photo-frame {
+            display: inline-block;
+            padding: 15px;
+            background: #80558b;
+            border-radius: 10px;
+            transform: rotate(-2deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid white;
+            overflow: hidden;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-label {
+            background: white;
+            padding: 8px 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #2c2c2c;
+            display: inline-block;
+        }
+
+        .speech-bubble {
+            position: relative;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #8b5584;
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 30px;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            border-top-color: #8b558b;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 32px;
+            width: 0;
+            height: 0;
+            border: 13px solid transparent;
+            border-top-color: white;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #8b5587;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title::before,
+        .section-title::after {
+            content: '♦';
+            color: #8b5574;
+            font-size: 1.2rem;
+            margin: 0 15px;
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(139, 115, 85, 0.1);
+            border-radius: 5px;
+        }
+
+        .info-label {
+            font-weight: bold;
+            color: #8b557d;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .education-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #8b557e;
+        }
+
+        .education-item h4 {
+            color: #8b557b;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .education-item p {
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .experience-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            border-left: 4px solid #8b5578;
+        }
+
+        .experience-year {
+            font-weight: bold;
+            color: #8b5572;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .experience-role {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2c2c2c;
+        }
+
+        .experience-details {
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, #8b557f, #a65b96);
+            color: white;
+            padding: 12px 8px;
+            border-radius: 25px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .languages-interests {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .language-bar {
+            background: #e0d5c7;
+            height: 8px;
+            border-radius: 4px;
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .language-progress {
+            background: linear-gradient(90deg, #8b5575, #a65b98);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        .interests-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .interest-item {
+            background: rgba(139, 115, 85, 0.2);
+            padding: 8px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: #2c2c2c;
+            border: 1px solid #8b7355;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .header h2 {
+                font-size: 1.5rem;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .languages-interests {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animações */
+        .section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .section:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .section:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .section:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Curriculum</h1>
+            <h2>Vitae</h2>
+        </header>
+
+        <div class="main-content">
+            <div class="left-column">
+                <div class="photo-section">
+                    <div class="photo-frame">
+                        <div class="photo">
+                            <img src="favicon.png" alt="Foto de Isabela">
+                        </div>
+                        <div class="photo-label">Isabela</div>
+                    </div>
+                </div>
+
+                <div class="speech-bubble">
+                    <p>Hello!
+                        My name is Isabela,
+                        I'm a perfectionist when it comes to my creative work and am always eager to learn new things
+                        within today's creative world.</p>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">About me</h3>
+                    <div class="info-item">
+                        <span class="info-label">Name:</span>
+                        Isabela
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Age:</span>
+                        24 y
+                    </div>
+                    <div class="info-item">
+                        Brazil
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Contact</h3>
+                    <div class="info-item">
+                        <span class="info-label">Email:</span>
+                        araujoisa352@gmail.com
+                    </div>
+            </div>
+
+            <div class="right-column">
+                <div class="section">
+                    <h3 class="section-title">Education</h3>
+                    <div class="education-grid">
+                        <div class="education-item">
+                            <h4>Software Engineer</h4>
+                            <p>UEPA - Universidade do Estado do Pará</p>
+                            <p>2024 - loading...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Experience</h3>
+                    <div class="experience-item">
+                        <div class="experience-year">2024 - at the moment</div>
+                        <div class="experience-role">Freelance</div>
+                        <div class="experience-details">
+                            • Websites<br>
+                            • Logo creation<br>
+                            • Illustrations<br>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h3 class="section-title">Skills</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">Javascript</div>
+                        <div class="skill-item">TypeScript</div>
+                        <div class="skill-item">React</div>
+                        <div class="skill-item">Python</div>
+                        <div class="skill-item">Web Design</div>
+                        <div class="skill-item">SQL</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="languages-interests">
+                        <div>
+                            <h3 class="section-title">Languages</h3>
+                            <div class="info-item">
+                                <span class="info-label">English</span>
+                                <div class="language-bar">
+                                    <div class="language-progress" style="width: 60%;"></div>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">French</span>
+                                <div class="language-bar">
+                                    <div class="language-progress" style="width: 30%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="section-title">Hobbies</h3>
+                            <div class="interests-list">
+                                <div class="interest-item">Draw</div>
+                                <div class="interest-item">Play the guitar</div>
+                                <div class="interest-item">Crochet</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animação da barra de progresso de idioma
+        window.addEventListener('load', function () {
+            const progressBars = document.querySelectorAll('.language-progress');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 500);
+            });
+        });
+
+        // Efeito hover nos cards de habilidades
+        const skillItems = document.querySelectorAll('.skill-item');
+        skillItems.forEach(item => {
+            item.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-5px) scale(1.05)';
+                this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.3)';
+            });
+
+            item.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 3px 10px rgba(0,0,0,0.2)';
+            });
+        });
+
+        // Efeito de digitação no speech bubble
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '';
+
+            function typing() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typing, speed);
+                }
+            }
+            typing();
+        }
+
+        // Inicializar efeito de digitação
+        setTimeout(() => {
+            const speechText = document.querySelector('.speech-bubble p');
+            const originalText = speechText.innerHTML;
+            typeWriter(speechText, originalText, 30);
+        }, 1000);
+
+        // Parallax suave no scroll
+        window.addEventListener('scroll', function () {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.2;
+
+            const photoFrame = document.querySelector('.photo-frame');
+            if (photoFrame) {
+                photoFrame.style.transform = `rotate(-2deg) translateY(${rate}px)`;
+            }
+        });
+    </script>
+</body>
+
+</html>
